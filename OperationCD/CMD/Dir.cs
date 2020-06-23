@@ -1,4 +1,5 @@
 ﻿using OperationCD.PathParser;
+using OperationCD.Supporter;
 using OperationCD.UserConstructor;
 using System;
 using System.Collections.Generic;
@@ -16,26 +17,31 @@ namespace OperationCD.CMD
     {
         public static void GetDir(User u)
         {
-            string Path = TruepathParser.parse(u);
-            //画出开头
-            Console.WriteLine("Name" + GetSpaces("Name") + "Type" + GetSpaces("Type") + "Size");
-            Console.WriteLine("------------------------------------------------------------------");
-            //先获取文件夹
-            DirectoryInfo info;
-            string[] directories = Directory.GetDirectories(Path);
-            foreach(string directory in directories)
+            StringBuilder sb = new StringBuilder();
+            string pre = IndexTableReader.ReadToEnd(u);
+            foreach(string s in pre.Split('\n'))
             {
-                info = new DirectoryInfo(directory);
-                Console.WriteLine(info.Name+@"\" + GetSpaces(info.Name+@"\") + "Directory" + GetSpaces("Directory") + @"\");
+                if (s == null || s == "") continue;
+                sb.AppendLine(s);
             }
-            //再获取文件列表
-            string[] files = Directory.GetFiles(Path);
-            FileInfo finfo;
-            foreach (string file in files)
+            string[] data = sb.ToString().Split('\n');
+            sb.Clear();
+            foreach(string s in data)
             {
-                finfo = new FileInfo(file);
-                Console.WriteLine(finfo.Name  + GetSpaces(finfo.Name ) + "File" + GetSpaces("File") + finfo.Length);
+                if (s.StartsWith(u.GetPath()))
+                {
+                    sb.AppendLine(s.Substring(s.IndexOf(u.GetPath()) + u.GetPath().Length+1));
+                }
             }
+            data = sb.ToString().Split('\n');
+            sb.Clear();
+            foreach(string s in data)
+            {
+                if (s == null || s == "") continue;
+                if (s.IndexOf('\\')>0) continue;
+                Console.WriteLine(s.Split('\\')[0]);
+            }
+
         }
 
         private static string GetSpaces(string str)

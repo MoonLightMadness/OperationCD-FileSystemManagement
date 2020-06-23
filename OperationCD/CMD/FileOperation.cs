@@ -36,11 +36,7 @@ namespace OperationCD.CMD
                File.Create(tpath + @"\" + fname).Close();
             }
             //向索引表添加记录
-            string envpath = ConstValue.envpath + u.GetName() + ".env";
-            StreamWriter sw = new StreamWriter(envpath, true);
-            sw.WriteLine(LogicalParser.parse(tpath + @"\" + fname, u));
-            sw.Flush();
-            sw.Close();
+            IndexTableWriter.Write(u, u.GetPath() + @"\" + fname, true);
         }
         /// <summary>
         /// 删除文件

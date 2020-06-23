@@ -36,11 +36,7 @@ namespace OperationCD.CMD
                 Directory.CreateDirectory(tpath + @"\" + dname);
             }
             //向索引表添加记录
-            string envpath = ConstValue.envpath + u.GetName() + ".env";
-            StreamWriter sw = new StreamWriter(envpath, true);
-            sw.WriteLine(LogicalParser.parse(tpath + @"\" + dname,u));
-            sw.Flush();
-            sw.Close();
+            IndexTableWriter.Write(u, u.GetPath() + @"\" + dname, true);
         }
         /// <summary>
         /// 删除文件夹
