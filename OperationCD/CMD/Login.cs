@@ -15,7 +15,7 @@ namespace OperationCD.CMD
     class Login
     {
         private static string workpath =ConstValue.userpath;
-        public static bool login(ref User u)
+        public static User login(User u)
         {
             Console.WriteLine("请输入用户名: ");
             string name = Console.ReadLine();
@@ -32,17 +32,17 @@ namespace OperationCD.CMD
                     if (pwd == Supporter.UserSupporter.GetPWD(name))
                     {
                         u = User.GetInstance(name);
-                        return true;
+                        return u;
                     }
                     else
                     {
                         Console.WriteLine("密码错误");
-                        return false;
+                        return null;
                     }
                 }
             }
             Console.WriteLine("用户不存在");
-            return false;
+            return null;
         }
         //登出
         public static void logout(ref User u)

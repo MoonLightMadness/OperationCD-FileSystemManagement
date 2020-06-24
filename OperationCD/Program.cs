@@ -70,7 +70,7 @@ namespace OperationCD
             {
                 //登录
                 case "login":
-                    CMD.Login.login(ref user);
+                    user=Login.login(user);
                     break;
                 //创建一个新用户
                 case "create_user":
