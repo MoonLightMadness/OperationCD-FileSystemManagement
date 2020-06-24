@@ -150,7 +150,7 @@ namespace OperationCD
                     break;
                 //输入错误
                 default:
-                    if (cmd == "\n") Console.WriteLine();
+                    if (cmd.Trim() == "\n") Console.WriteLine();
                     else
                     {
                         Console.WriteLine("没有这样的命令，请检查");

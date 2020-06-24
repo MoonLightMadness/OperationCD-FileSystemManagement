@@ -59,6 +59,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Supporter\ConstValue.cs" />
     <Compile Include="Supporter\IndexTableOperation.cs" />
+    <Compile Include="Supporter\IndexTableReader.cs" />
+    <Compile Include="Supporter\IndexTableWriter.cs" />
     <Compile Include="Supporter\UserSupporter.cs" />
     <Compile Include="UserConstructor\User.cs" />
   </ItemGroup>
