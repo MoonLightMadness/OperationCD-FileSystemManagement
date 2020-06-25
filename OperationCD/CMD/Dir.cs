@@ -37,9 +37,9 @@ namespace OperationCD.CMD
             sb.Clear();
             foreach(string s in data)
             {
-                if (s == null || s == "") continue;
+                if (s == null || s == ""||s=="\n") continue;
                 if (s.IndexOf('\\')>0) continue;
-                Console.WriteLine(s.Split('\\')[0]);
+                Console.WriteLine(s.Split('\\')[0].Trim());
             }
 
         }

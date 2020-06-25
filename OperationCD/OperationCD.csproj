@@ -62,6 +62,7 @@
     <Compile Include="Supporter\IndexTableOperation.cs" />
     <Compile Include="Supporter\IndexTableReader.cs" />
     <Compile Include="Supporter\IndexTableWriter.cs" />
+    <Compile Include="Supporter\Loger.cs" />
     <Compile Include="Supporter\SystemInfo.cs" />
     <Compile Include="Supporter\UserSupporter.cs" />
     <Compile Include="UserConstructor\User.cs" />

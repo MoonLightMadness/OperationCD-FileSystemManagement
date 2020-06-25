@@ -84,6 +84,7 @@ namespace OperationCD
             {
                 if (user != null) Console.Write(user.GetName() + "@" + user.GetSinglePath() + ">");
                 cmd = Console.ReadLine();
+                Loger.Write(cmd, user);
                 if (user != null)
                     excutecmd(cmd);
                 else
