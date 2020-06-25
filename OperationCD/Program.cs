@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,13 +43,46 @@ namespace OperationCD
         2、给出用到的主要数据结构
         3、给出测试数据和测试结果
          */
+        /// <summary>
+        /// 表示用户
+        /// </summary>
         private static User user;
+        /// <summary>
+        /// 命令分析器
+        /// </summary>
+        private static CMDAnalyser analyser;
+        /// <summary>
+        /// 命令列表
+        /// </summary>
+        private static XCMD[] xcmds;
         static void Main(string[] args)
         {
+            //反射模式
+            //analyser = new CMDAnalyser();
+            //xcmds = analyser.Get();
+            //string cmd;
+            //while (true)
+            //{
+            //    if (user != null) Console.Write(user.GetName() + "@" + user.GetSinglePath() + ">");
+            //    string[] cmds = Console.ReadLine().Split(' ');
+            //    cmd = cmds[0];
+            //    foreach(XCMD xcmd in xcmds)
+            //    {
+            //        if (xcmd.cmd == cmd)
+            //        {
+            //            Type t = Type.GetType(xcmd.classname);
+            //            MethodInfo minfo = t.GetMethod(xcmd.funcname);
+            //            user= (User)minfo.Invoke(null,new object[] { user});
+            //        }
+            //    }
+            //}
+            //显示欢迎信息
+            Console.WriteLine(SystemInfo.GetSystemInfo(user));
+            //普通模式
             string cmd;
             while (true)
             {
-                if(user!=null) Console.Write(user.GetName() + "@" + user.GetSinglePath() + ">");
+                if (user != null) Console.Write(user.GetName() + "@" + user.GetSinglePath() + ">");
                 cmd = Console.ReadLine();
                 if (user != null)
                     excutecmd(cmd);
@@ -75,6 +109,10 @@ namespace OperationCD
                 //创建一个新用户
                 case "create_user":
                     SuperCMD.create_user(cmds[1], cmds[2]);
+                    break;
+                //返回系统信息
+                case "info":
+                    Console.WriteLine(SystemInfo.GetSystemInfo(user));
                     break;
                 default:
                     if (cmd == "\n") Console.WriteLine();
@@ -147,6 +185,10 @@ namespace OperationCD
                 //删除一个文件
                 case "my_deletefile":
                     FileOperation.delete(user, cmds[1]);
+                    break;
+                //返回系统信息
+                case "info":
+                    Console.WriteLine(SystemInfo.GetSystemInfo(user));
                     break;
                 //输入错误
                 default:

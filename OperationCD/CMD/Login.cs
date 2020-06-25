@@ -17,6 +17,12 @@ namespace OperationCD.CMD
         private static string workpath =ConstValue.userpath;
         public static User login(User u)
         {
+            //如果已经登录，则不进行登录操作
+            if (u != null)
+            {
+                Console.WriteLine("登录状态已确认，无需二次登录\n若想切换账户，请先执行logout命令以退出");
+                return u;
+            }
             Console.WriteLine("请输入用户名: ");
             string name = Console.ReadLine();
             string[] paths = Directory.GetDirectories(workpath);
@@ -31,7 +37,9 @@ namespace OperationCD.CMD
                     string pwd = Console.ReadLine();
                     if (pwd == Supporter.UserSupporter.GetPWD(name))
                     {
+                        Console.Clear();
                         u = User.GetInstance(name);
+                        Console.WriteLine(SystemInfo.GetSystemInfo(u));
                         return u;
                     }
                     else

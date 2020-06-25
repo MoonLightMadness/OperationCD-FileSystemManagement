@@ -22,6 +22,8 @@ namespace OperationCD.CMD
         /// <param name="dname">文件夹名字</param>
         public static void makedir(User u,string dname)
         {
+            //考虑输入错误的情况
+            if (dname.Equals("")) return;
             if (dname.StartsWith(@".\"))
             {
                 dname=dname.Substring(2);
@@ -45,6 +47,8 @@ namespace OperationCD.CMD
         /// <param name="dname"></param>
         public static void deletedir(User u,string dname)
         {
+            //考虑输入错误的情况
+            if (dname.Equals("")) return;
             if (dname.StartsWith(@".\"))
             {
                 dname = dname.Substring(2);

@@ -22,6 +22,8 @@ namespace OperationCD.CMD
         /// <param name="fname"></param>
         public static void create(User u,string fname)
         {
+            //考虑输入错误
+            if (fname.Equals("")) return;
             if (fname.StartsWith(@".\"))
             {
                 fname = fname.Substring(2);
@@ -45,6 +47,8 @@ namespace OperationCD.CMD
         /// <param name="fname"></param>
         public static void delete(User u,string fname)
         {
+            //考虑输入错误的情况
+            if (fname.Equals("")) return;
             if (fname.StartsWith(@".\"))
             {
                 fname = fname.Substring(2);
